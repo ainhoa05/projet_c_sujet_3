@@ -64,39 +64,44 @@ int main(void){
 }
 
 int nonautoriser(wchar_t *message,wchar_t *alphabetmin,wchar_t *alphabetmaj,wchar_t *alpahbetaccent){
-  int contenir=0,i=0,j;
-  while(message[i]!='\n'){
-        j=0;
-        //premier boucle qui verifie si la lettre du message appartient au minuscule ou au maj ou est un espace
-        //si oui il ajoute 1 car le caractère est autorise
-        while(j<26){
-               
-          if (message[i]==alphabetmin[j] || message[i]==alphabetmaj[j] || message[i]==' '){
-          	contenir+=1;
-          }
-          j++;
-        }
-        j=0;
-        //deuxieme boucle si il y a pas de majuscule ou de minucusle ou d espace
-        //on verifie si il y a accent
-        while(j<wcslen(alpahbetaccent)){
-          if (message[i]==alpahbetaccent[j] ){
-           wprintf(L"caractere: %lc \n",alpahbetaccent[j]);
-            contenir+=1;
-          }
-          j++;
-        }
-        if(contenir==0){
-          return 2;
-        }
-        contenir=0;
-        i++;
-  }
-  return 1;
+	//Déclaration des variables
+	int contenir=0,i=0,j;
+	
+	//debut boucle
+	while(message[i]!='\n'){
+		j=0;
+		//premier boucle qui verifie si la lettre du message appartient au minuscule ou au maj ou est un espace
+		//si oui il ajoute 1 car le caractère est autorise
+		while(j<26){     
+			if (message[i]==alphabetmin[j] || message[i]==alphabetmaj[j] || message[i]==' '){
+				contenir+=1;
+			}
+			j++;
+		}
+		j=0;
+		//deuxieme boucle si il y a pas de majuscule ou de minucusle ou d espace
+		//on verifie si il y a accent
+		while(j<wcslen(alpahbetaccent)){
+			if (message[i]==alpahbetaccent[j] ){
+				wprintf(L"caractere: %lc \n",alpahbetaccent[j]);
+				contenir+=1;
+			}
+			j++;
+		}
+		if(contenir==0){
+			return 2;
+		}
+		contenir=0;
+		i++;
+	}
+	return 1;
 }
 
 int verifexistaccent(wchar_t *message,wchar_t *alpahbetaccent){
+	//Déclaration des variables
 	int i=0,j;
+	
+	//debut boucle
 	while(message[i]!='\n'){
 		j=0;
 		while(j<wcslen(alpahbetaccent)){
@@ -111,6 +116,8 @@ int verifexistaccent(wchar_t *message,wchar_t *alpahbetaccent){
 }
 void convertionMessage(wchar_t *message,wchar_t *message_sans_accent,wchar_t *alphabetmaj,wchar_t *alphabetmin){
 	int i=0;
+	
+	//debut boucle
 	while(message[i]!='\n'){
 		switch(message[i]){
 			//A majuscule position 0 dans l alphabet
@@ -191,6 +198,7 @@ void convertionMessage(wchar_t *message,wchar_t *message_sans_accent,wchar_t *al
 int estmaj(wchar_t *alphabetmaj,wchar_t lettre){
 	//Déclaration des variables
 	int i=0;
+	
 	//debut boucle
 	while(i<26){
 		if(lettre==alphabetmaj[i]){
@@ -218,13 +226,13 @@ int indice(wchar_t *alphabetmin,wchar_t *alphabetmaj,wchar_t lettre){
 
 void cesar(wchar_t *message_sans_accent,wchar_t *message_convertie, wchar_t *alphabetmin,wchar_t *alphabetmaj){
 	//Déclaration des variables
-	int clef,i,indice_lettre_message,somme;
+	int clef=0,i,indice_lettre_message,somme;
 	i=0;
 	
 	//demande clef
 	wprintf(L"\nSaisir la clef : ");
 	wscanf(L"%ld",&clef);
-	wprintf(L"Clé saisi : %ld ",clef);
+	wprintf(L"Clef saisi : %ld ",clef);
 
   	//debut boucle
 	while(i<wcslen(message_sans_accent)){
