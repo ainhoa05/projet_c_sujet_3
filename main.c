@@ -1,6 +1,5 @@
 /*
-	cd Documents*
-	cd projet_c_iriart_ainhoa_tommy
+	cd Documents/projet_c_iriart_ainhoa_tommy
 	gcc main.c -o main
 	./main
 	Exemple test
@@ -12,6 +11,29 @@
 	Caé oui
 	Ayc msg
 	clef:24
+	
+	vigenere chiffrement
+	dCode Vigenere automatiquement
+	CLE
+	fNsfp Zkrippvg lyvzqcemsfioprv
+	
+	
+	Hamtaro est trop mimi
+	MIMI
+	Tiybmza meb fzax yqyq
+	
+	vigenere dechiffrement
+	JBCWLCWGCWCICWXBNZUSVSWH JPLR EWPSWSAS FCF
+
+	cle JOJO
+	ANTICONSTITUTIONELLEMENT ABCD VIGENERE WOW
+	
+	LW FU OSBH OE FILGMGX IVFUS MSFOFE XX BZ RANX FOZGXV WSE THQTHQS VILH FRXW MFQS MVXG UMISKHMNM THID LT WTBFE GSNPXIX TTG ZOG TEIE DX QTBSEK GBBC FKYBH QT EIZIYE IEK XAUKW LWZOG XN GQRTW IOE EG FHBZE LEGHQE IPNG FAKH OSDY BQICDTTRM RANM JHFSEM XAWE PEITGQ
+
+	SI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SANTEE PLUS TARD VERY IMPORTANT DONT FORGET THIS PLEASE
+	
+	
+	cle TOMATE
 	
 	
 */
@@ -25,40 +47,44 @@
 #include <ctype.h>
 
 //En-tête fonction
-int nonautoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent);
-int verifexistaccent(wchar_t *message,wchar_t *accent);
+int nonAutoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent);
+int verifExistaccent(wchar_t *message,wchar_t *accent);
 void convertionMessage(wchar_t *message,wchar_t *messageSansAccent,wchar_t *maj,wchar_t *min);
-int estmaj(wchar_t *maj,wchar_t lettre);
+int estMaj(wchar_t *maj,wchar_t lettre);
 int indice(wchar_t *min,wchar_t *maj,wchar_t lettre);
 void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wchar_t *maj,int clefC);
+void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
+void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
+void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
 int main(void){
 	struct lconv *loc;
 	setlocale (LC_ALL, "");
 	loc=localeconv();
 	// Déclaration des variables
-	wchar_t  message[200]={0};
-	wchar_t  messageSansAccent[200]={0};
+	wchar_t  message[300]={0};
+	wchar_t  messageSansAccent[300]={0};
 	
 	wchar_t min[]=L"abcdefghijklmnopqrstuvwxyz";
 	wchar_t maj[]=L"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   	wchar_t accent[]=L"ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖòóôõöÙÚÛÜùúûüÝýÿ";
 	
-	wchar_t messageConvertie[200]={0};
+	wchar_t messageConvertie[300]={0};
 	int choixAlgo;
 	int clefC;
+	wchar_t clefV[300]={0};
 	// Demande de saisir le message
 	wprintf(L"\n - Saisir votre message : ");
-	fgetws(message,200,stdin);
+	fgetws(message,300,stdin);
 	
 	// Vérification caractère non autoriser
-	while(nonautoriser(message,min,maj,accent)==2){
+	while(nonAutoriser(message,min,maj,accent)==2){
 		wprintf(L" -! ERREUR : caractere non autorise !-\n");
 		wprintf(L"    Resaisir votre message : ");
-		fgetws(message,200,stdin);
+		fgetws(message,300,stdin);
 	}
 	
 	// Convertion message
-	if(verifexistaccent(message,accent)==1){
+	if(verifExistaccent(message,accent)==1){
 		wprintf(L" - Votre message contient des accents. \n");
 		wprintf(L"   Convertion en cour ... \n");
 	}else{
@@ -88,27 +114,35 @@ int main(void){
 			wprintf(L"\n ------   Chiffrement Cesar   ------\n\n");
 			wprintf(L"\n - Saisir votre clef : ");
 			wscanf(L"%d",&clefC);
-			wprintf(L"   Votre Clef : %d \sn",clefC);
+			wprintf(L"   Votre Clef : %d \n",clefC);
 			cesar(messageSansAccent,messageConvertie,min,maj,clefC);
 			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
 			break;
 		case 2:
 			wprintf(L"\n ------   Chiffrement Vigenere   ------\n\n");
-			//wprintf(L"\n - Saisir votre clef : ");
-			//wscanf(L"%d",&clefC);
-			//wprintf(L"   Votre Clef : %d \n",clefC);
-			//break;
+			wprintf(L"Saisir la clef(un mot) : ");
+			wscanf(L"%ls",&clefV);
+			wprintf(L"   Votre Clef : %ls \n",clefV);
+			vigenere(messageSansAccent,min,maj,messageConvertie,clefV);
+			wprintf(L"\n   Votre message convertie: %ls \n",messageConvertie);
+			break;
 		case 3:
 			wprintf(L"\n ------   Dechiffrement Vigenere   ------\n\n");
-			//wprintf(L"\n - Saisir votre clef : ");
-			//wscanf(L"%d",&clefC);
-			//wprintf(L"   Votre Clef : %d \n",clefC);
-			//break;
+			wprintf(L"Saisir la clef(un mot) : ");
+			wscanf(L"%ls",&clefV);
+			wprintf(L"   Votre Clef : %ls \n",clefV);
+			vigenereDechiffrement(messageSansAccent,min,maj,messageConvertie,clefV);
+			wprintf(L"\n  Votre message convertie: %ls \n",messageConvertie);
+			break;
+		default:
+			break;
 		
 	}
+	
+	//proposer à l'utilisateur de mettre le resultat dans un fichier 
 }
-s
-int nonautoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent){
+
+int nonAutoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent){
 	// Déclaration des variables
 	int contenir=0,i=0,j,v;
 		
@@ -137,7 +171,7 @@ int nonautoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent){
 	}
 	return 1;
 }
-int verifexistaccent(wchar_t *message,wchar_t *accent){
+int verifExistaccent(wchar_t *message,wchar_t *accent){
 	// Déclaration des variables
 	int i=0,j;
 	
@@ -231,7 +265,7 @@ void convertionMessage(wchar_t *message,wchar_t *messageSansAccent,wchar_t *maj,
 		i++;
 	}
 }
-int estmaj(wchar_t *maj,wchar_t lettre){
+int estMaj(wchar_t *maj,wchar_t lettre){
 	// Déclaration des variables
 	int i=0;
   
@@ -278,7 +312,7 @@ void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wc
 		if(messageSansAccent[i]==' '){
 			messageConvertie[i]=' ';
 		}else{
-			majOuMin=estmaj(maj,messageSansAccent[i]);
+			majOuMin=estMaj(maj,messageSansAccent[i]);
 			indiceLMessage=indice(min,maj,messageSansAccent[i]);
 			somme=indiceLMessage+clefC;
 			if(somme>=26){
@@ -292,4 +326,85 @@ void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wc
 		}
 		i++;
   	}
+}
+void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClefT){
+	
+	int i=0,k=0;
+	while(i<wcslen(messageSansAccent)){
+		if(messageSansAccent[i]==' '){
+			copieClefT[i]=' ';
+		}else{
+			if(k<wcslen(clefV)){
+				copieClefT[i]=clefV[k];
+				k++;
+			}else{
+				k=0;
+				copieClefT[i]=clefV[k];
+				k++;
+			}
+		}
+		i++;
+	}
+}
+void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV){
+	// Déclaration des variables
+	wchar_t copieClefT[300]={0};
+	int indiceMessage,indiceClef,somme=0,w=0;
+		
+	//debut programme
+	
+	//copie la clef dans ce tableau
+	copieClef(messageSansAccent,clefV,copieClefT);
+	
+	//debut BoucleSI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SOP HU CKPF QE I
+	while(w<wcslen(messageSansAccent)){
+		if(messageSansAccent[w]==' '){
+			messageConvertie[w]=' ';   
+		}else{
+			indiceMessage=indice(min,maj,messageSansAccent[w]);
+			indiceClef=indice(min,maj,copieClefT[w]);
+			somme=indiceMessage+indiceClef;
+			if(somme>=26){
+				somme%=26;
+			}
+			if(estMaj(maj,messageSansAccent[w])==0){
+				messageConvertie[w]=maj[somme];
+			}else{
+				messageConvertie[w]=min[somme];
+			}
+		}   
+		w++;
+	}
+  
+}
+void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV){
+	// Déclaration des variables
+	wchar_t copieClefT[300]={0};
+	int indiceMessage,indiceClef,somme=0,w=0;
+		
+	//debut programme
+	
+	//copie la clef dans ce tableau
+	copieClef(messageSansAccent,clefV,copieClefT);
+	
+	//debut Boucle
+	while(w<wcslen(messageSansAccent)){
+		if(messageSansAccent[w]==' '){
+			messageConvertie[w]=' ';   
+		}else{
+			indiceMessage=indice(min,maj,messageSansAccent[w]);
+			indiceClef=indice(min,maj,copieClefT[w]);
+			somme=indiceMessage-indiceClef;
+			if(somme<0){
+				somme+=26;
+			}
+			if(estMaj(maj,messageSansAccent[w])==0){
+				messageConvertie[w]=maj[somme];
+			}else{
+				messageConvertie[w]=min[somme];
+			}
+		}   
+		w++;
+	}
+  
 }
