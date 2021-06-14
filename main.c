@@ -32,7 +32,6 @@
 
 	SI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SANTEE PLUS TARD VERY IMPORTANT DONT FORGET THIS PLEASE
 	
-	
 	cle TOMATE
 	
 	
@@ -56,6 +55,7 @@ void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wc
 void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
 void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
 void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
+
 int main(void){
 	struct lconv *loc;
 	setlocale (LC_ALL, "");
@@ -72,7 +72,9 @@ int main(void){
 	int choixAlgo;
 	int clefC;
 	wchar_t clefV[300]={0};
+	int choixRF;
 	// Demande de saisir le message
+	
 	wprintf(L"\n - Saisir votre message : ");
 	fgetws(message,300,stdin);
 	
@@ -94,7 +96,7 @@ int main(void){
 	wprintf(L"   Votre message : %ls \n",messageSansAccent);
 	
 	// Choix de l'algorithme
-	wprintf(L" - Veuillez choisir un algorithme :  \n");
+	wprintf(L"\n - Veuillez choisir un algorithme :  \n");
 	wprintf(L"  	1) Chiffrement Cesar  \n");
 	wprintf(L"  	2) Chiffrement Vigenere\n");
 	wprintf(L"  	3) Dechiffrement Vigenere\n");
@@ -128,7 +130,7 @@ int main(void){
 			break;
 		case 3:
 			wprintf(L"\n ------   Dechiffrement Vigenere   ------\n\n");
-			wprintf(L"Saisir la clef(un mot) : ");
+			wprintf(L"   Saisir la clef(un mot) : ");
 			wscanf(L"%ls",&clefV);
 			wprintf(L"   Votre Clef : %ls \n",clefV);
 			vigenereDechiffrement(messageSansAccent,min,maj,messageConvertie,clefV);
@@ -138,8 +140,50 @@ int main(void){
 			break;
 		
 	}
-	
 	//proposer à l'utilisateur de mettre le resultat dans un fichier 
+	wprintf(L"\n - Voulez-vous mettre le resultat dans un fichier votreConvertion.txt ? \n");
+	wprintf(L"  	- Taper 0 pour oui.\n");
+	wprintf(L"  	- Taper 1 pour non.\n");
+	wprintf(L"\n	Votre reponse : ");
+	wscanf(L"%d",&choixRF);
+	
+	// Verification 
+	while(choixRF<0 || choixRF>1){
+		wprintf(L"\n -! ERREUR : Votre choix doit 0(pour oui) ou 1(pour non) !-\n");
+		wprintf(L"    Resaisir votre choix : ");
+		wscanf(L"%d",&choixRF);
+	}
+	// Resultat dans un fichier
+	if(choixRF==0){
+		FILE* fichier = NULL;
+		fichier = fopen("votreConvertion.txt", "a");
+		switch(choixAlgo){
+			case 1:
+				fwprintf(fichier,L"\n\n ------   Chiffrement Cesar   ------\n\n");
+				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
+				fwprintf(fichier,L"   Votre Clef : %d \n",clefC);
+				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				break;
+			case 2:
+				fwprintf(fichier,L"\n ------   Chiffrement Vigenere   ------\n\n");
+				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
+				fwprintf(fichier,L"   Votre Clef : %ls \n",clefV);
+				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				break;
+			case 3:
+				fwprintf(fichier,L"\n ------   Dechiffrement Vigenere   ------\n\n");
+				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
+				fwprintf(fichier,L"   Votre Clef : %ls \n",clefV);
+				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				break;
+			default:
+				break;
+			
+		}
+		fclose(fichier);
+	}
+	wprintf(L"\n ----------- FIN DU PROGRAMME -----------\n");
+	
 }
 
 int nonAutoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent){
@@ -356,7 +400,7 @@ void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *mess
 	//copie la clef dans ce tableau
 	copieClef(messageSansAccent,clefV,copieClefT);
 	
-	//debut BoucleSI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SOP HU CKPF QE I
+	//debut Boucle
 	while(w<wcslen(messageSansAccent)){
 		if(messageSansAccent[w]==' '){
 			messageConvertie[w]=' ';   
