@@ -2,39 +2,58 @@
 	cd Documents/projet_c_iriart_ainhoa_tommy
 	gcc main.c -o main
 	./main
-	Exemple test
+	Exemple test:
+	
 	Pour cesar :
-	dCode César
-	cBncd Bdrzq
-	clef: -1
-	
-	Caé oui
-	Ayc msg
+	-------------------------
+	code :dCode César
+	clef:-1
+	resultat :cBncd Bdrzq
+	-----------------------
+	code :Caé oui
 	clef:24
+	resultat :Ayc msg
 	
-	vigenere chiffrement
-	dCode Vigenere automatiquement
-	CLE
-	fNsfp Zkrippvg lyvzqcemsfioprv
+	-----------------------
+	code: ÀÁÂÃÄÅ àáâãäå Çç ÈÉÊË èéêë ÌÍÎÏ ìíîï Ññ ÒÓÔÕÖ òóôõö ÙÚÛÜ ùúûü Ýýÿ
+	clef:-20
+	resultat:GGGGGG gggggg Ii KKKK kkkk OOOO oooo Tt UUUUU uuuuu AAAA aaaa Eee
+   code_resultat:
+	
+	------------------------
+	code:ÀÁÂÃÄÅ àáâãäå Çç ÈÉÊË èéêë ÌÍÎÏ ìíîï Ññ ÒÓÔÕÖ òóôõö ÙÚÛÜ ùúûü Ýýÿ
+	clef: 25
+	resultat:ZZZZZZ zzzzzz Bb DDDD dddd HHHH hhhh Mm NNNNN nnnnn TTTT tttt Xxx
 	
 	
-	Hamtaro est trop mimi
-	MIMI
-	Tiybmza meb fzax yqyq
+	Pour vigenere chiffrement:
+	--------------------------------------
+	code :dCode Vigenere automatiquement
+	clef:CLE
+	resultat :fNsfp Zkrippvg lyvzqcemsfioprv
 	
-	vigenere dechiffrement
-	JBCWLCWGCWCICWXBNZUSVSWH JPLR EWPSWSAS FCF
+	---------------------------------------
+	code : Hamtaro est trop mimi
+	clef: MIMI
+	resultat Tiybmza meb fzax yqyq
+	---------------------------------------
+	
+	code:ÀÁÂÃÄÅ àáâãäå Çç ÈÉÊË èéêë ÌÍÎÏ ìíîï Ññ ÒÓÔÕÖ òóôõö ÙÚÛÜ ùúûü Ýýÿ
+	clef:CLE
+	resultat:CLECLE clecle En IGPI gpig TMKT mktm Py SQZSQ zsqzs WFYW fywf Caj
+		 CLECL eclecl Ge PIGP igpi KTMK tmkt Rp ZSQZS qzsqz YWFY wfyw Jca
+	
+	Pour vigenere dechiffrement:
+	------------------------------------------------
+	code :JBCWLCWGCWCICWXBNZUSVSWH JPLR EWPSWSAS FCF
+	cle:JOJO
+	resultat:ANTICONSTITUTIONELLEMENT ABCD VIGENERE WOW
+	
+	---------------------------------------------------
+	code: LW FU OSBH OE FILGMGX IVFUS MSFOFE XX BZ RANX FOZGXV WSE THQTHQS VILH FRXW MFQS MVXG UMISKHMNM THID LT WTBFE GSNPXIX TTG ZOG TEIE DX QTBSEK GBBC FKYBH QT EIZIYE IEK XAUKW LWZOG XN GQRTW IOE EG FHBZE LEGHQE IPNG FAKH OSDY BQICDTTRM RANM JHFSEM XAWE PEITGQ
+	cle:TOMATE
+	resultat: SI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SANTEE PLUS TARD VERY IMPORTANT DONT FORGET THIS PLEASE
 
-	cle JOJO
-	ANTICONSTITUTIONELLEMENT ABCD VIGENERE WOW
-	
-	LW FU OSBH OE FILGMGX IVFUS MSFOFE XX BZ RANX FOZGXV WSE THQTHQS VILH FRXW MFQS MVXG UMISKHMNM THID LT WTBFE GSNPXIX TTG ZOG TEIE DX QTBSEK GBBC FKYBH QT EIZIYE IEK XAUKW LWZOG XN GQRTW IOE EG FHBZE LEGHQE IPNG FAKH OSDY BQICDTTRM RANM JHFSEM XAWE PEITGQ
-
-	SI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SANTEE PLUS TARD VERY IMPORTANT DONT FORGET THIS PLEASE
-	
-	cle TOMATE
-	
-	
 */
 
 //Ajout bibliothèque
@@ -57,100 +76,106 @@ void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
 void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
 
 int main(void){
+
 	struct lconv *loc;
 	setlocale (LC_ALL, "");
 	loc=localeconv();
+	
 	// Déclaration des variables
-	wchar_t  message[300]={0};
-	wchar_t  messageSansAccent[300]={0};
+	wchar_t message[300]={0};
+	wchar_t messageSansAccent[300]={0};
+	wchar_t messageConvertie[300]={0};
 	
 	wchar_t min[]=L"abcdefghijklmnopqrstuvwxyz";
 	wchar_t maj[]=L"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   	wchar_t accent[]=L"ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖòóôõöÙÚÛÜùúûüÝýÿ";
 	
-	wchar_t messageConvertie[300]={0};
-	int choixAlgo;
-	int clefC;
-	wchar_t clefV[300]={0};
-	int choixRF;
-	// Demande de saisir le message
 	
-	wprintf(L"\n - Saisir votre message : ");
+	int choixAlgo,clefC,choixRF;
+	wchar_t clefV[300]={0};
+
+	// Demande de saisir le message
+	wprintf(L"\n\n ----------- La saisie du message -----------\n\n");
+	wprintf(L"   Saisir votre message : ");
 	fgetws(message,300,stdin);
 	
 	// Vérification caractère non autoriser
 	while(nonAutoriser(message,min,maj,accent)==2){
-		wprintf(L" -! ERREUR : caractere non autorise !-\n");
-		wprintf(L"    Resaisir votre message : ");
+		wprintf(L"\n   ! ERREUR ! : caractere non autorise ");
+		wprintf(L"   Resaisir votre message : ");
 		fgetws(message,300,stdin);
 	}
 	
 	// Convertion message
 	if(verifExistaccent(message,accent)==1){
-		wprintf(L" - Votre message contient des accents. \n");
-		wprintf(L"   Convertion en cour ... \n");
+		wprintf(L"\n   Votre message contient des accents. \n");
+		wprintf(L"   Convertion en cour ... \n\n");
 	}else{
-		wprintf(L" - Votre message ne contient pas d'accent. \n");
+		wprintf(L"\n   Votre message ne contient pas d'accent. \n");
 	}
 	convertionMessage(message,messageSansAccent,maj,min);
-	wprintf(L"   Votre message : %ls \n",messageSansAccent);
+	wprintf(L"\n   Votre message : %ls \n",messageSansAccent);
+	
 	
 	// Choix de l'algorithme
-	wprintf(L"\n - Veuillez choisir un algorithme :  \n");
+	wprintf(L"\n ----------- La saisie de l'algorithme -----------\n");
+	wprintf(L"\n   Veuillez choisir un algorithme :  \n");
 	wprintf(L"  	1) Chiffrement Cesar  \n");
 	wprintf(L"  	2) Chiffrement Vigenere\n");
 	wprintf(L"  	3) Dechiffrement Vigenere\n");
 	wprintf(L"\n   Saisir votre algorithme : ");
 	wscanf(L"%d",&choixAlgo);
-	wprintf(L"   Votre choix : %d \n",choixAlgo);
+	
 	
 	// Verification 
 	while(choixAlgo<1 || choixAlgo>3){
-		wprintf(L"\n -! ERREUR : Votre choix doit etre 1, 2 ou 3 !-\n");
-		wprintf(L"    Resaisir votre choix : ");
+		wprintf(L"\n  ! ERREUR ! : Votre choix doit etre 1, 2 ou 3  \n");
+		wprintf(L"    Ressaisir votre choix : ");
 		wscanf(L"%d",&choixAlgo);
 	}
+	wprintf(L"\n   Votre choix : %d \n",choixAlgo);
 	//selection de l'algoritme
 	switch(choixAlgo){
 		case 1:
-			wprintf(L"\n ------   Chiffrement Cesar   ------\n\n");
-			wprintf(L"\n - Saisir votre clef : ");
+			wprintf(L"\n ----------- Chiffrement Cesar ----------- \n");
+			wprintf(L"\n   Saisir la clef : ");
 			wscanf(L"%d",&clefC);
-			wprintf(L"   Votre Clef : %d \n",clefC);
+			wprintf(L"\n   Votre Clef : %d \n\n",clefC);
 			cesar(messageSansAccent,messageConvertie,min,maj,clefC);
-			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
+			wprintf(L"   Votre message convertie: %ls \n\n",messageConvertie);
 			break;
 		case 2:
-			wprintf(L"\n ------   Chiffrement Vigenere   ------\n\n");
-			wprintf(L"Saisir la clef(un mot) : ");
+			wprintf(L"\n ----------- Chiffrement Vigenere ----------- \n");
+			wprintf(L"\n   Saisir la clef(un mot) : ");
 			wscanf(L"%ls",&clefV);
-			wprintf(L"   Votre Clef : %ls \n",clefV);
+			wprintf(L"\n   Votre Clef : %ls \n",clefV);
 			vigenere(messageSansAccent,min,maj,messageConvertie,clefV);
-			wprintf(L"\n   Votre message convertie: %ls \n",messageConvertie);
+			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
 			break;
 		case 3:
-			wprintf(L"\n ------   Dechiffrement Vigenere   ------\n\n");
-			wprintf(L"   Saisir la clef(un mot) : ");
+			wprintf(L"\n ----------- Dechiffrement Vigenere ----------- \n");
+			wprintf(L"\n   Saisir la clef(un mot) : ");
 			wscanf(L"%ls",&clefV);
-			wprintf(L"   Votre Clef : %ls \n",clefV);
+			wprintf(L"\n   Votre Clef : %ls \n",clefV);
 			vigenereDechiffrement(messageSansAccent,min,maj,messageConvertie,clefV);
-			wprintf(L"\n  Votre message convertie: %ls \n",messageConvertie);
+			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
 			break;
 		default:
 			break;
 		
 	}
 	//proposer à l'utilisateur de mettre le resultat dans un fichier 
-	wprintf(L"\n - Voulez-vous mettre le resultat dans un fichier votreConvertion.txt ? \n");
-	wprintf(L"  	- Taper 0 pour oui.\n");
-	wprintf(L"  	- Taper 1 pour non.\n");
-	wprintf(L"\n	Votre reponse : ");
+	wprintf(L"\n ----------- Resultat dans un fichier .txt ----------- \n");
+	wprintf(L"\n   Voulez-vous mettre le resultat dans un fichier votreConvertion.txt ? \n");
+	wprintf(L"  	Taper 0 pour oui.\n");
+	wprintf(L"  	Taper 1 pour non.\n");
+	wprintf(L"\n   Votre reponse : ");
 	wscanf(L"%d",&choixRF);
 	
 	// Verification 
 	while(choixRF<0 || choixRF>1){
-		wprintf(L"\n -! ERREUR : Votre choix doit 0(pour oui) ou 1(pour non) !-\n");
-		wprintf(L"    Resaisir votre choix : ");
+		wprintf(L"\n  ! ERREUR ! : Votre choix doit 0(pour oui) ou 1(pour non) !-\n");
+		wprintf(L"   Ressaisir votre choix : ");
 		wscanf(L"%d",&choixRF);
 	}
 	// Resultat dans un fichier
@@ -163,6 +188,7 @@ int main(void){
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %d \n",clefC);
 				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				
 				break;
 			case 2:
 				fwprintf(fichier,L"\n ------   Chiffrement Vigenere   ------\n\n");
@@ -238,7 +264,7 @@ void convertionMessage(wchar_t *message,wchar_t *messageSansAccent,wchar_t *maj,
 	
 	// Boucle de convertions
 	while(message[i]!='\n'){
-		switch(message[i]){
+		switch(message[i]){ 
 		//A majuscule position 0 dans l alphabet
 		case L'À': case L'Á': case L'Â': case L'Ã': case L'Ä': case L'Å':
 			messageSansAccent[i]=maj[0];
@@ -394,11 +420,12 @@ void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *mess
 	// Déclaration des variables
 	wchar_t copieClefT[300]={0};
 	int indiceMessage,indiceClef,somme=0,w=0;
-		
+	
 	//debut programme
 	
 	//copie la clef dans ce tableau
 	copieClef(messageSansAccent,clefV,copieClefT);
+	
 	
 	//debut Boucle
 	while(w<wcslen(messageSansAccent)){
