@@ -80,6 +80,12 @@ void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
 // Stock dans le resultat dans message convertie 
 void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
 ```
+
+```c
+// Procedure cartourche
+// Affiche la cartouche
+void cartourche();
+```
 ### Un exemple de déroulement
 
 1- Affiche de la cartouche
@@ -106,10 +112,59 @@ void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,
 ******************************************************************************/
 </pre>
 2- Demande de saisie du message, vous rentrez : ÀÁÂÃÄÅ àáâãäå Çç,
+<pre>
+----------- La saisie du message -----------
+
+   Saisir votre message : ÀÁÂÃÄÅ àáâãäå Çç,
+   
+</pre>
 3- Il vous affiche une erreur vous ressaisisez le message : ÀÁÂÃÄÅ àáâãäå Çç
+<pre>
+ ! ERREUR ! : caractere non autorise 
+   Resaisir votre message : ÀÁÂÃÄÅ àáâãäå Çç 
+
+   Votre message contient des accents. 
+   Convertion en cour ... 
+
+
+   Votre message : AAAAAA aaaaaa Cc 
+   
+</pre>
 4- Choix de l'algorithme: 
+<pre>
+Veuillez choisir un algorithme :  
+  	1) Chiffrement Cesar  
+  	2) Dechiffrement Cesar
+  	3) Chiffrement Vigenere
+  	4) Dechiffrement Vigenere
+</pre>
 5- Vous saisisez 3 qui correspond au chiffrement vigenère
+<pre>
+Saisir votre algorithme : 3
+
+   Votre choix : 3
+  	
+</pre>
 6- Vous saisissez la clef: cle
+<pre>
+----------- Chiffrement Vigenere ----------- 
+
+   Saisir la clef(un mot) : cle
+
+   Votre Clef : cle 
+   Votre message convertie: CLECLE clecle En
+</pre>
 7- Vous choississez de ne pas enregistrer le fichier 
+<pre>
+----------- Resultat dans un fichier .txt ----------- 
+
+   Voulez-vous mettre le resultat dans un fichier votreConvertion.txt ? 
+  	Taper 0 pour oui.
+  	Taper 1 pour non.
+
+   Votre reponse : 1
+
+ ----------- FIN DU PROGRAMME -----------
+</pre>
 
   
