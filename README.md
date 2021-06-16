@@ -118,7 +118,7 @@ void cartourche();
    Saisir votre message : ÀÁÂÃÄÅ àáâãäå Çç,
    
 </pre>
-3- Il vous affiche une erreur vous ressaisisez le message : ÀÁÂÃÄÅ àáâãäå Çç
+3- Il vous affiche une erreur vous ressaisissez le message : ÀÁÂÃÄÅ àáâãäå Çç
 <pre>
  ! ERREUR ! : caractere non autorise 
    Resaisir votre message : ÀÁÂÃÄÅ àáâãäå Çç 
@@ -138,7 +138,7 @@ Veuillez choisir un algorithme :
   	3) Chiffrement Vigenere
   	4) Dechiffrement Vigenere
 </pre>
-5- Vous saisisez 3 qui correspond au chiffrement vigenère
+5- Vous saisissez 3 qui correspond au chiffrement vigenère
 <pre>
 Saisir votre algorithme : 3
 
