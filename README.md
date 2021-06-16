@@ -80,5 +80,36 @@ void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
 // Stock dans le resultat dans message convertie 
 void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
 ```
-### Un exemple
+### Un exemple de déroulement
+
+1- Affiche de la cartouche
+<pre>
+/******************************************************************************
+*  ASR => M2101                                                               *
+*******************************************************************************
+*                                                                             *
+*  N° de Sujet : 3                                                            *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*  Intitulé : Chiffrement de messages                                         *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*  Nom-prénom1 : IRIART Ainhoa                                                *
+*                                                                             *
+*  Nom-prénom2 : Philippe Tom                                                 *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*  Nom du fichier : main.c                                                    *
+******************************************************************************/
+</pre>
+2- Demande de saisie du message, vous rentrez : ÀÁÂÃÄÅ àáâãäå Çç,
+3- Il vous affiche une erreur vous ressaisisez le message : ÀÁÂÃÄÅ àáâãäå Çç
+4- Choix de l'algorithme: 
+5- Vous saisisez 3 qui correspond au chiffrement vigenère
+6- Vous saisissez la clef: cle
+7- Vous choississez de ne pas enregistrer le fichier 
+
   
