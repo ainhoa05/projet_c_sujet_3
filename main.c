@@ -83,7 +83,9 @@ int main(void){
 	
 	int choixAlgo,clefC,choixRF;
 	wchar_t clefV[300]={0};
-
+	// Cartouche 
+	cartourche();
+	
 	// Demande de saisir le message
 	wprintf(L"\n\n ----------- La saisie du message -----------\n\n");
 	wprintf(L"   Saisir votre message : ");

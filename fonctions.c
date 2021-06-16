@@ -271,3 +271,27 @@ void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,
 	}
   
 }
+
+void cartourche(){
+	wprintf(L"/******************************************************************************\n");
+	wprintf(L"*  ASR => M2101                                                               *\n");
+	wprintf(L"*******************************************************************************\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*  N° de Sujet : 3                                                            *\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*******************************************************************************\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*  Intitulé : Chiffrement de messages                                         *\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*******************************************************************************\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*  Nom-prénom1 : IRIART Ainhoa                                                *\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*  Nom-prénom2 : Philippe Tom                                                 *\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*******************************************************************************\n");
+	wprintf(L"*                                                                             *\n");
+	wprintf(L"*  Nom du fichier : main.c                                                    *\n");
+	wprintf(L"******************************************************************************/\n\n");
+}
+}

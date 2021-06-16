@@ -3,7 +3,7 @@
 // Fonction nonAutoriser
 // Les paramètres : message utilisateur, tableau des minuscules, tableau des majuscules et le tableau des accents
 // Retourne 2 si le caractère n'est pas une minuscule,  une majuscule,  un accent ou un espace
-// Sinou retourne 1
+// Sinon retourne 1
 int nonAutoriser(wchar_t *message,wchar_t *min,wchar_t *maj,wchar_t *accent);
 
 // Fonction verifExistaccent
@@ -49,3 +49,7 @@ void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
 // Les paramètres:  message sans accent de l'utilisateur,  tableau des minuscules et tableau des majuscules, message convertie(sortie) et la clef saisie par l'utiisateur dans le main
 // Stock dans le resultat dans message convertie 
 void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
+
+// Procedure cartourche
+// Affiche la cartouche
+void cartourche();
