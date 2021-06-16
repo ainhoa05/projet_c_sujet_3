@@ -94,7 +94,7 @@ int main(void){
 	// Vérification caractère non autoriser
 	while(nonAutoriser(message,min,maj,accent)==2){
 		wprintf(L"\n   ! ERREUR ! : caractere non autorise ");
-		wprintf(L"   Resaisir votre message : ");
+		wprintf(L"\n   Resaisir votre message : ");
 		fgetws(message,300,stdin);
 	}
 	
@@ -113,14 +113,15 @@ int main(void){
 	wprintf(L"\n ----------- La saisie de l'algorithme -----------\n");
 	wprintf(L"\n   Veuillez choisir un algorithme :  \n");
 	wprintf(L"  	1) Chiffrement Cesar  \n");
-	wprintf(L"  	2) Chiffrement Vigenere\n");
-	wprintf(L"  	3) Dechiffrement Vigenere\n");
+	wprintf(L"  	2) Dechiffrement Cesar\n");
+	wprintf(L"  	3) Chiffrement Vigenere\n");
+	wprintf(L"  	4) Dechiffrement Vigenere\n");
 	wprintf(L"\n   Saisir votre algorithme : ");
 	wscanf(L"%d",&choixAlgo);
 	
 	
 	// Verification 
-	while(choixAlgo<1 || choixAlgo>3){
+	while(choixAlgo<1 || choixAlgo>4){
 		wprintf(L"\n  ! ERREUR ! : Votre choix doit etre 1, 2 ou 3  \n");
 		wprintf(L"    Ressaisir votre choix : ");
 		wscanf(L"%d",&choixAlgo);
@@ -137,6 +138,14 @@ int main(void){
 			wprintf(L"   Votre message convertie: %ls \n\n",messageConvertie);
 			break;
 		case 2:
+			wprintf(L"\n ----------- Dechiffrement Cesar ----------- \n");
+			wprintf(L"\n   Saisir la clef : ");
+			wscanf(L"%d",&clefC);
+			wprintf(L"\n   Votre Clef : %d \n\n",clefC);
+			cesarDechiffrement(messageSansAccent,messageConvertie,min,maj,clefC);;
+			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
+			break;
+		case 3:
 			wprintf(L"\n ----------- Chiffrement Vigenere ----------- \n");
 			wprintf(L"\n   Saisir la clef(un mot) : ");
 			wscanf(L"%ls",&clefV);
@@ -144,7 +153,7 @@ int main(void){
 			vigenere(messageSansAccent,min,maj,messageConvertie,clefV);
 			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
 			break;
-		case 3:
+		case 4:
 			wprintf(L"\n ----------- Dechiffrement Vigenere ----------- \n");
 			wprintf(L"\n   Saisir la clef(un mot) : ");
 			wscanf(L"%ls",&clefV);
@@ -183,12 +192,18 @@ int main(void){
 				
 				break;
 			case 2:
+				fwprintf(fichier,L"\n ------   Dechiffrement Cesar   ------\n\n");
+				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
+				fwprintf(fichier,L"   Votre Clef : %d \n",clefC);
+				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				break;
+			case 3:
 				fwprintf(fichier,L"\n ------   Chiffrement Vigenere   ------\n\n");
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %ls \n",clefV);
 				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
 				break;
-			case 3:
+			case 4:
 				fwprintf(fichier,L"\n ------   Dechiffrement Vigenere   ------\n\n");
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %ls \n",clefV);

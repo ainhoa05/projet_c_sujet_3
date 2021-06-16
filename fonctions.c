@@ -189,6 +189,35 @@ void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wc
 		i++;
   	}
 }
+void cesarDechiffrement(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wchar_t *maj,int clefC){
+	// Déclaration des variables
+	int i,majOuMin,indiceLMessage,somme;
+
+  	//debut programme
+  	//Si clef est négatif on ajouter 26
+  	while (clefC<0){
+  		clefC+=26;
+  	}
+	i=0;
+	while(i<wcslen(messageSansAccent)){
+		if(messageSansAccent[i]==' '){
+			messageConvertie[i]=' ';
+		}else{
+			majOuMin=estMaj(maj,messageSansAccent[i]);
+			indiceLMessage=indice(min,maj,messageSansAccent[i]);
+			somme=indiceLMessage-clefC;
+			if(somme<0){
+				somme+=26;
+			}
+			if(majOuMin==0){
+				messageConvertie[i]=maj[somme];
+			}else{
+				messageConvertie[i]=min[somme];
+	      		}
+		}
+		i++;
+  	}
+}
 void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClefT){
 	
 	int i=0,k=0;
