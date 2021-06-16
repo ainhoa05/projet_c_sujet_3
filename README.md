@@ -154,7 +154,7 @@ Saisir votre algorithme : 3
    Votre Clef : cle 
    Votre message convertie: CLECLE clecle En
 </pre>
-7- Vous choississez de ne pas enregistrer le fichier 
+7- Vous choisissez de ne pas enregistrer le fichier 
 <pre>
 ----------- Resultat dans un fichier .txt ----------- 
 
