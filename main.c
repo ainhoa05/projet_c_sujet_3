@@ -101,7 +101,7 @@ int main(void){
 	// Convertion message
 	if(verifExistaccent(message,accent)==1){
 		wprintf(L"\n   Votre message contient des accents. \n");
-		wprintf(L"   Convertion en cour ... \n\n");
+		wprintf(L"   Conversion en cours ... \n\n");
 	}else{
 		wprintf(L"\n   Votre message ne contient pas d'accent. \n");
 	}
@@ -135,7 +135,7 @@ int main(void){
 			wscanf(L"%d",&clefC);
 			wprintf(L"\n   Votre Clef : %d \n\n",clefC);
 			cesar(messageSansAccent,messageConvertie,min,maj,clefC);
-			wprintf(L"   Votre message convertie: %ls \n\n",messageConvertie);
+			wprintf(L"   Votre message converti: %ls \n\n",messageConvertie);
 			break;
 		case 2:
 			wprintf(L"\n ----------- Dechiffrement Cesar ----------- \n");
@@ -143,7 +143,7 @@ int main(void){
 			wscanf(L"%d",&clefC);
 			wprintf(L"\n   Votre Clef : %d \n\n",clefC);
 			cesarDechiffrement(messageSansAccent,messageConvertie,min,maj,clefC);;
-			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
+			wprintf(L"   Votre message converti: %ls \n",messageConvertie);
 			break;
 		case 3:
 			wprintf(L"\n ----------- Chiffrement Vigenere ----------- \n");
@@ -151,7 +151,7 @@ int main(void){
 			wscanf(L"%ls",&clefV);
 			wprintf(L"\n   Votre Clef : %ls \n",clefV);
 			vigenere(messageSansAccent,min,maj,messageConvertie,clefV);
-			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
+			wprintf(L"   Votre message converti: %ls \n",messageConvertie);
 			break;
 		case 4:
 			wprintf(L"\n ----------- Dechiffrement Vigenere ----------- \n");
@@ -159,7 +159,7 @@ int main(void){
 			wscanf(L"%ls",&clefV);
 			wprintf(L"\n   Votre Clef : %ls \n",clefV);
 			vigenereDechiffrement(messageSansAccent,min,maj,messageConvertie,clefV);
-			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
+			wprintf(L"   Votre message converti: %ls \n",messageConvertie);
 			break;
 		default:
 			break;
@@ -188,26 +188,26 @@ int main(void){
 				fwprintf(fichier,L"\n\n ------   Chiffrement Cesar   ------\n\n");
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %d \n",clefC);
-				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				fwprintf(fichier,L"   Votre message converti: %ls \n",messageConvertie);
 				
 				break;
 			case 2:
 				fwprintf(fichier,L"\n ------   Dechiffrement Cesar   ------\n\n");
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %d \n",clefC);
-				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				fwprintf(fichier,L"   Votre message converti: %ls \n",messageConvertie);
 				break;
 			case 3:
 				fwprintf(fichier,L"\n ------   Chiffrement Vigenere   ------\n\n");
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %ls \n",clefV);
-				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				fwprintf(fichier,L"   Votre message converti: %ls \n",messageConvertie);
 				break;
 			case 4:
 				fwprintf(fichier,L"\n ------   Dechiffrement Vigenere   ------\n\n");
 				fwprintf(fichier,L"   Votre message : %ls \n",messageSansAccent);
 				fwprintf(fichier,L"   Votre Clef : %ls \n",clefV);
-				fwprintf(fichier,L"   Votre message convertie: %ls \n",messageConvertie);
+				fwprintf(fichier,L"   Votre message converti: %ls \n",messageConvertie);
 				break;
 			default:
 				break;
