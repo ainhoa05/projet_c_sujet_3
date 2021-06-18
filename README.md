@@ -58,13 +58,18 @@ int indice(wchar_t *min,wchar_t *maj,wchar_t lettre);
 // Stock dans le resultat dans message convertie 
 void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wchar_t *maj,int clefC);
 ```
+```c
+// Procedure cesarDechiffrement
+// Les paramètres:  message sans accent de l'utilisateur, message convertie(sortie), tableau des minuscules et tableau des majuscules et la clef saisie par l'utiisateur dans le main
+// Stock dans le resultat dans message convertie 
+void cesarDechiffrement(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wchar_t *maj,int clefC);
+```
 
 ```c
 // Procedure vigenere
 // Les paramètres:  message sans accent de l'utilisateur,  tableau des minuscules et tableau des majuscules, message convertie(sortie) et la clef saisie par l'utiisateur dans le main
 // Stock dans le resultat dans message convertie 
 void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
-
 ```
 
 ```c
