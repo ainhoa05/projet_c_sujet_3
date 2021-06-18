@@ -1,14 +1,14 @@
 # projet_c_sujet_3
 ### Le but
 
-Développer une application qui permet de crypter ou de decrypter un message saisie par l'utilisateur à l'aide de deux algoritmes : 
+Développer une application qui permet de crypter ou de décrypter un message saisi par l'utilisateur à l'aide de deux algoritmes : 
 1. Cesar
 2. vigenere
 
 ### Comment compiler ou exécuter le programme
 - Compiler : make all
 - Exécuter : ./main
-- supprimer les .o et votreConvertion.txt : make clean
+- Supprimer les .o et votreConvertion.txt : make clean
 
 ### Desciption de chaque fontion
 
@@ -111,7 +111,7 @@ void cartourche();
 *  Nom du fichier : main.c                                                    *
 ******************************************************************************/
 </pre>
-2- Demande de saisie du message, vous rentrez : ÀÁÂÃÄÅ àáâãäå Çç,
+2- Demande de la saisie du message, vous rentrez : ÀÁÂÃÄÅ àáâãäå Çç,
 <pre>
 ----------- La saisie du message -----------
 
