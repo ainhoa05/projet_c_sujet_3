@@ -1,14 +1,14 @@
 # projet_c_sujet_3
 ### Le but
 
-Développer une application qui permet de crypter ou de decrypter un message saisie par l'utilisateur à l'aide de deux algoritmes : 
+Développer une application qui permet de crypter ou de décrypter un message saisi par l'utilisateur à l'aide de deux algorithmes : 
 1. Cesar
 2. vigenere
 
-### Comment compiler ou exécuter le programme
+### Comment compiler ou éxécuter le programme
 - Compiler : make all
 - Exécuter : ./main
-- supprimer les .o et votreConvertion.txt : make clean
+- Supprimer les .o et votreConvertion.txt : make clean
 
 ### Desciption de chaque fontion
 
@@ -55,29 +55,34 @@ int indice(wchar_t *min,wchar_t *maj,wchar_t lettre);
 ```c
 // Procedure cesar
 // Les paramètres:  message sans accent de l'utilisateur, message convertie(sortie), tableau des minuscules et tableau des majuscules et la clef saisie par l'utiisateur dans le main
-// Stock dans le resultat dans message convertie 
+// Stock du resultat dans message converti
 void cesar(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wchar_t *maj,int clefC);
+```
+```c
+// Procedure cesarDechiffrement
+// Les paramètres:  message sans accent de l'utilisateur, message convertie(sortie), tableau des minuscules et tableau des majuscules et la clef saisie par l'utiisateur dans le main
+// Stock du resultat dans message converti 
+void cesarDechiffrement(wchar_t *messageSansAccent,wchar_t *messageConvertie, wchar_t *min,wchar_t *maj,int clefC);
 ```
 
 ```c
 // Procedure vigenere
 // Les paramètres:  message sans accent de l'utilisateur,  tableau des minuscules et tableau des majuscules, message convertie(sortie) et la clef saisie par l'utiisateur dans le main
-// Stock dans le resultat dans message convertie 
+// Stock dans le resultat dans message converti
 void vigenere(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
-
 ```
 
 ```c
 // Procedure copieClef
 // Les paramètres:  message sans accent de l'utilisateur, La clef saisie par l'utilisateur dans le main, tableau de la clef en fonction du nombre d'élement du message de l'utilisateur
-// Stock dans le resultat dans copie clef
+// Stock du dans copie clef
 void copieClef(wchar_t *messageSansAccent,wchar_t *clefV,wchar_t *copieClef);
 ```
 
 ```c
 // Procedure vigenereDechiffrement
 // Les paramètres:  message sans accent de l'utilisateur,  tableau des minuscules et tableau des majuscules, message convertie(sortie) et la clef saisie par l'utiisateur dans le main
-// Stock dans le resultat dans message convertie 
+// Stock du resultat dans message converti 
 void vigenereDechiffrement(wchar_t *messageSansAccent,wchar_t *min,wchar_t *maj,wchar_t *messageConvertie, wchar_t *clefV);
 ```
 
@@ -111,7 +116,7 @@ void cartourche();
 *  Nom du fichier : main.c                                                    *
 ******************************************************************************/
 </pre>
-2- Demande de saisie du message, vous rentrez : ÀÁÂÃÄÅ àáâãäå Çç,
+2- Demande de la saisie du message, vous rentrez : ÀÁÂÃÄÅ àáâãäå Çç,
 <pre>
 ----------- La saisie du message -----------
 
@@ -121,10 +126,10 @@ void cartourche();
 3- Il vous affiche une erreur vous ressaisissez le message : ÀÁÂÃÄÅ àáâãäå Çç
 <pre>
  ! ERREUR ! : caractere non autorise 
-   Resaisir votre message : ÀÁÂÃÄÅ àáâãäå Çç 
+   Ressaisir votre message : ÀÁÂÃÄÅ àáâãäå Çç 
 
    Votre message contient des accents. 
-   Convertion en cour ... 
+   Conversion en cours ... 
 
 
    Votre message : AAAAAA aaaaaa Cc 
@@ -152,9 +157,9 @@ Saisir votre algorithme : 3
    Saisir la clef(un mot) : cle
 
    Votre Clef : cle 
-   Votre message convertie: CLECLE clecle En
+   Votre message converti: CLECLE clecle En
 </pre>
-7- Vous choississez de ne pas enregistrer le fichier 
+7- Vous choisissez de ne pas enregistrer le fichier 
 <pre>
 ----------- Resultat dans un fichier .txt ----------- 
 
