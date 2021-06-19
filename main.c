@@ -1,60 +1,3 @@
-/*
-	cd Documents/projet_c_iriart_ainhoa_tommy
-	gcc main.c -o main
-	./main
-	Exemple test:
-	
-	Pour cesar :
-	-------------------------
-	code :dCode César
-	clef:-1
-	resultat :cBncd Bdrzq
-	-----------------------
-	code :Caé oui
-	clef:24
-	resultat :Ayc msg
-	
-	-----------------------
-	code: ÀÁÂÃÄÅ àáâãäå Çç ÈÉÊË èéêë ÌÍÎÏ ìíîï Ññ ÒÓÔÕÖ òóôõö ÙÚÛÜ ùúûü Ýýÿ
-	clef:-20
-	resultat:GGGGGG gggggg Ii KKKK kkkk OOOO oooo Tt UUUUU uuuuu AAAA aaaa Eee
-   code_resultat:
-	
-	------------------------
-	code:ÀÁÂÃÄÅ àáâãäå Çç ÈÉÊË èéêë ÌÍÎÏ ìíîï Ññ ÒÓÔÕÖ òóôõö ÙÚÛÜ ùúûü Ýýÿ
-	clef: 25
-	resultat:ZZZZZZ zzzzzz Bb DDDD dddd HHHH hhhh Mm NNNNN nnnnn TTTT tttt Xxx
-	
-	
-	Pour vigenere chiffrement:
-	--------------------------------------
-	code :dCode Vigenere automatiquement
-	clef:CLE
-	resultat :fNsfp Zkrippvg lyvzqcemsfioprv
-	
-	---------------------------------------
-	code : Hamtaro est trop mimi
-	clef: MIMI
-	resultat Tiybmza meb fzax yqyq
-	---------------------------------------
-	
-	code:ÀÁÂÃÄÅ àáâãäå Çç ÈÉÊË èéêë ÌÍÎÏ ìíîï Ññ ÒÓÔÕÖ òóôõö ÙÚÛÜ ùúûü Ýýÿ
-	clef:CLE
-	resultat:CLECLE clecle En IGPI gpig TMKT mktm Py SQZSQ zsqzs WFYW fywf Caj
-		 
-	
-	Pour vigenere dechiffrement:
-	------------------------------------------------
-	code :JBCWLCWGCWCICWXBNZUSVSWH JPLR EWPSWSAS FCF
-	cle:JOJO
-	resultat:ANTICONSTITUTIONELLEMENT ABCD VIGENERE WOW
-	
-	---------------------------------------------------
-	code: LW FU OSBH OE FILGMGX IVFUS MSFOFE XX BZ RANX FOZGXV WSE THQTHQS VILH FRXW MFQS MVXG UMISKHMNM THID LT WTBFE GSNPXIX TTG ZOG TEIE DX QTBSEK GBBC FKYBH QT EIZIYE IEK XAUKW LWZOG XN GQRTW IOE EG FHBZE LEGHQE IPNG FAKH OSDY BQICDTTRM RANM JHFSEM XAWE PEITGQ
-	cle:TOMATE
-	resultat: SI TU VOIT CE MESSAGE ECRIS TOMATE ET IL FAUT MANGER DES TOMATES CEST TRES TRES TRES IMPORTANT POUR LA SANTE NOUBLIE PAS NON PLUS DE MANGER CINQ FRUIT ET LEGUME PAR JOURS SINON TU SERAS PAS EN BONNE SANTEE PLUS TARD VERY IMPORTANT DONT FORGET THIS PLEASE
-
-*/
 
 //Ajout bibliothèque
 #include <stdio.h>
@@ -64,7 +7,7 @@
 #include <stdlib.h>
 #include "fonctions.h"
 
-
+//Programme main
 int main(void){
 
 	struct lconv *loc;
@@ -94,7 +37,7 @@ int main(void){
 	// Vérification caractère non autoriser
 	while(nonAutoriser(message,min,maj,accent)==2){
 		wprintf(L"\n   ! ERREUR ! : caractere non autorise ");
-		wprintf(L"\n   Resaisir votre message : ");
+		wprintf(L"\n   Ressaisir votre message : ");
 		fgetws(message,300,stdin);
 	}
 	
@@ -158,7 +101,7 @@ int main(void){
 			wprintf(L"\n   Saisir la clef(un mot) : ");
 			wscanf(L"%ls",&clefV);
 			wprintf(L"\n   Votre Clef : %ls \n",clefV);
-			vigenereDechiffrement(messageSansAccent,min,maj,messageConvertie,clefV);
+	      		vigenereDechiffrement(messageSansAccent,min,maj,messageConvertie,clefV);
 			wprintf(L"   Votre message convertie: %ls \n",messageConvertie);
 			break;
 		default:
