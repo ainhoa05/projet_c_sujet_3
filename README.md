@@ -126,7 +126,7 @@ void cartourche();
 3- Il vous affiche une erreur vous ressaisissez le message : ÀÁÂÃÄÅ àáâãäå Çç
 <pre>
  ! ERREUR ! : caractere non autorise 
-   Resaisir votre message : ÀÁÂÃÄÅ àáâãäå Çç 
+   Ressaisir votre message : ÀÁÂÃÄÅ àáâãäå Çç 
 
    Votre message contient des accents. 
    Conversion en cours ... 
